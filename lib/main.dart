@@ -160,35 +160,23 @@ class FavoritesPage extends StatelessWidget {
       );
     }
 
-    return LayoutBuilder(
-      builder: (context, constraints) => ListView(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(20),
-            constraints: BoxConstraints(
-              minHeight: constraints.maxHeight,
-            ),
-            child: Column(
-              children: [
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Text(
-                        'You have ${appState.favorites.length} favorites:'),
-                  ),
-                ),
-                for (var pair in appState.favorites)
-                  Center(
-                    child: ListTile(
-                      leading: Icon(Icons.favorite),
-                      title: Text(pair.asLowerCase),
-                    ),
-                  ),
-              ],
-            ),
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Center(
+              child: Text(
+            'You have ${appState.favorites.length} favorites:',
+            style: TextStyle(fontSize: 25),
+          )),
+        ),
+        for (var pair in appState.favorites)
+          ListTile(
+            contentPadding: const EdgeInsets.all(20),
+            leading: Icon(Icons.favorite),
+            title: Center(child: Text(pair.asLowerCase)),
           ),
-        ],
-      ),
+      ],
     );
   }
 }
